@@ -2,7 +2,20 @@
 document.addEventListener('DOMContentLoaded', () => {
     const generateBtn = document.getElementById('generate-btn');
     const numberCircles = document.querySelectorAll('.number-circle');
+    const themeBtn = document.getElementById('theme-btn');
+    
+    // Theme logic
+    const currentTheme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
+    themeBtn.addEventListener('click', () => {
+        let theme = document.documentElement.getAttribute('data-theme');
+        let newTheme = theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+    });
+
+    // Lotto logic
     generateBtn.addEventListener('click', () => {
         const lottoNumbers = generateLottoNumbers();
         displayNumbers(lottoNumbers);
@@ -24,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 circle.style.backgroundColor = getNumberColor(numbers[index]);
             } else {
                 circle.textContent = '';
-                circle.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+                circle.style.backgroundColor = 'var(--circle-bg)';
             }
         });
     }

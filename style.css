@@ -1,4 +1,22 @@
 
+:root {
+    --bg-gradient: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #7522c5, #4c2bcf, #2a3ad5, #0a4ae1, #0056e9, #0060ef, #0066f2);
+    --container-bg: rgba(255, 255, 255, 0.1);
+    --text-color: white;
+    --button-bg: #007bff;
+    --button-hover: #0056b3;
+    --circle-bg: rgba(255, 255, 255, 0.2);
+}
+
+[data-theme="light"] {
+    --bg-gradient: linear-gradient(45deg, #fdfbfb 0%, #ebedee 100%);
+    --container-bg: rgba(0, 0, 0, 0.05);
+    --text-color: #333;
+    --button-bg: #4a90e2;
+    --button-hover: #357abd;
+    --circle-bg: rgba(0, 0, 0, 0.1);
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     display: flex;
@@ -6,20 +24,43 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888, #7522c5, #4c2bcf, #2a3ad5, #0a4ae1, #0056e9, #0060ef, #0066f2);
+    background: var(--bg-gradient);
+    transition: background 0.5s ease;
 }
 
 .container {
+    position: relative;
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--container-bg);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     backdrop-filter: blur(10px);
+    transition: background-color 0.5s ease;
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#theme-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+}
+
+#theme-btn:hover {
+    transform: rotate(30deg);
 }
 
 h1 {
-    color: white;
+    color: var(--text-color);
     margin-bottom: 30px;
 }
 
@@ -39,8 +80,8 @@ h1 {
     align-items: center;
     font-size: 24px;
     font-weight: bold;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.2);
+    color: white; /* Keep numbers white for contrast usually, or dynamic */
+    background-color: var(--circle-bg);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -49,7 +90,7 @@ h1 {
     font-size: 18px;
     font-weight: bold;
     color: white;
-    background-color: #007bff;
+    background-color: var(--button-bg);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -58,6 +99,6 @@ h1 {
 }
 
 #generate-btn:hover {
-    background-color: #0056b3;
+    background-color: var(--button-hover);
     box-shadow: 0 0 20px rgba(0, 123, 255, 0.7);
 }
